@@ -1,10 +1,6 @@
-import { useMemo, useReducer } from "react";
-import {
-  CartDispatchContext,
-  cartReducer,
-  CartStateContext,
-  initialState,
-} from "./CartContext";
+import { useMemo, useReducer } from 'react';
+import { CartDispatchContext, CartStateContext } from './CartContext';
+import { cartReducer, initialState } from './cartReducer';
 
 export function CartProvider({ children }) {
   const [state, dispatch] = useReducer(cartReducer, initialState);
