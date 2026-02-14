@@ -3,17 +3,20 @@ export const initialState = {
 };
 
 export const cartReducer = (state, action) => {
-  const id = action.payload;
-  const exists = state.cartIds.includes(id);
+  switch (action.type) {
+    case 'toggle': {
+      const id = action.payload;
+      const exists = state.cartIds.includes(id);
 
-  if (action.type === 'toggle') {
-    return {
-      ...state,
-      cartIds: exists
-        ? state.cartIds.filter((x) => x !== id)
-        : [...state.cartIds, id],
-    };
+      return {
+        ...state,
+        cartIds: exists
+          ? state.cartIds.filter((x) => x !== id)
+          : [...state.cartIds, id],
+      };
+    }
+
+    default:
+      return state;
   }
-
-  return state;
 };

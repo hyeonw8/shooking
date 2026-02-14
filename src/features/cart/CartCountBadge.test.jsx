@@ -14,14 +14,15 @@ describe('CartCountBadge', () => {
     expect(container).toBeEmptyDOMElement();
   });
 
-  it('cartCount가 1이면 숫자가 렌더링된다 (경계값)', () => {
+  it('cartCount가 1이면 숫자가 렌더링된다', () => {
     render(
       <CartStateContext.Provider value={{ cartCount: 1 }}>
         <CartCountBadge />
       </CartStateContext.Provider>
     );
 
-    expect(screen.getByText('1')).toBeInTheDocument();
+    const badge = screen.getByLabelText('cart-count');
+    expect(badge).toHaveTextContent('1');
   });
 
   it('cartCount가 2이면 숫자가 렌더링된다', () => {
@@ -31,6 +32,7 @@ describe('CartCountBadge', () => {
       </CartStateContext.Provider>
     );
 
-    expect(screen.getByText('2')).toBeInTheDocument();
+    const badge = screen.getByLabelText('cart-count');
+    expect(badge).toHaveTextContent('2');
   });
 });
