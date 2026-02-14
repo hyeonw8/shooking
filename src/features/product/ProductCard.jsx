@@ -1,8 +1,6 @@
-import { ToggleToCartButton } from "./ToggleToCartButton";
+import { ToggleToCartButton } from './ToggleToCartButton';
 
-export const ProductCard = ({ item }) => {
-  const { id, image, brand, description, price } = item;
-
+export const ProductCard = ({ id, image, brand, description, price }) => {
   return (
     <div className="overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm hover:bg-gray-50">
       <div className="aspect-3/2 w-full overflow-hidden bg-gray-100">
