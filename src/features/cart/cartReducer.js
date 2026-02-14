@@ -6,7 +6,7 @@ export const cartReducer = (state, action) => {
   const id = action.payload;
   const exists = state.cartIds.includes(id);
 
-  if (action.type === "toggle") {
+  if (action.type === 'toggle') {
     return {
       ...state,
       cartIds: exists
