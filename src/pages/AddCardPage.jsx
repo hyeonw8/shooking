@@ -16,7 +16,7 @@ function AddCardPage() {
 
   return (
     <>
-      <main className="min-h-screen">
+      <main className="min-h-screen pb-6">
         <PaymentsHeader
           title="카드추가"
           variant="add"
