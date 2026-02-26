@@ -1,8 +1,8 @@
-import { useCart, useCartDispatch } from '../cart/useCart';
+import { useCartDispatch, useCartState } from '../cart/useCart';
 
 export const ToggleToCartButton = ({ id }) => {
   const dispatch = useCartDispatch();
-  const { cartSet } = useCart();
+  const { cartSet } = useCartState();
   const isInCart = cartSet.has(id);
 
   const handleToggleCart = () => {
@@ -12,7 +12,7 @@ export const ToggleToCartButton = ({ id }) => {
   return (
     <button
       onClick={handleToggleCart}
-      className={`mt-3 inline-flex w-14 items-center justify-center rounded-full py-1 text-sm font-semibold transition ${
+      className={`mt-3 inline-flex w-14 cursor-pointer items-center justify-center rounded-full py-1 text-sm font-semibold transition ${
         isInCart ? 'bg-gray-200 text-black' : 'bg-black text-white'
       }`}
     >

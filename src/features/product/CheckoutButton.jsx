@@ -13,7 +13,7 @@ export const CheckoutButton = () => {
     <button
 
       onClick={handleProceedToPayment}
-      className="mt-3 inline-flex w-14 items-center justify-center rounded-full bg-amber-200 py-1 text-sm font-semibold text-black transition"
+      className="mt-3 inline-flex w-14 items-center justify-center cursor-pointer rounded-full bg-amber-200 py-1 text-sm font-semibold text-black transition"
     >
       구매
     </button>
