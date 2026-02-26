@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { AddCardCTA } from '../features/payments/select-card/AddCardCTA';
 import { CardList } from '../features/payments/select-card/CardList';
 import { PaymentsHeader } from '../features/payments/shared/PaymentsHeader';
-import { mockCards } from '../mocks/cards';
+import { usePaymentsState } from '../features/payments/shared/usePayments';
 
 function MyCardsPage() {
   const navigate = useNavigate();
 
-  const myCards = mockCards;
+  const { cards } = usePaymentsState();
+  const myCards = cards;
 
   const handleClose = () => {
     navigate('/');
