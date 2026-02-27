@@ -1,18 +1,21 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, it, expect } from 'vitest';
+import { MemoryRouter } from 'react-router-dom';
+import { describe, expect, it } from 'vitest';
 
-import Home from './Home';
 import { CartProvider } from '../features/cart/CartProvider';
+import Home from './Home';
 
 describe('Home 통합', () => {
   it("상품 '담기' 클릭 시 헤더 장바구니 뱃지에 수량이 표시된다", async () => {
     const user = userEvent.setup();
 
     render(
-      <CartProvider>
-        <Home />
-      </CartProvider>
+      <MemoryRouter>
+        <CartProvider>
+          <Home />
+        </CartProvider>
+      </MemoryRouter>
     );
 
     expect(screen.queryByLabelText('cart-count')).not.toBeInTheDocument();
@@ -27,9 +30,11 @@ describe('Home 통합', () => {
     const user = userEvent.setup();
 
     render(
-      <CartProvider>
-        <Home />
-      </CartProvider>
+      <MemoryRouter>
+        <CartProvider>
+          <Home />
+        </CartProvider>
+      </MemoryRouter>
     );
 
     const addButton = screen.getAllByRole('button', { name: '담기' })[0];
