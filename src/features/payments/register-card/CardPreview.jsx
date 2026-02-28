@@ -21,11 +21,12 @@ export const CardPreview = ({ cardNumber, cardOwner, expiry }) => {
     const tail = raw.slice(8);
     const masked = head + '*'.repeat(tail.length);
 
-    return masked.match(/.{1,4}/g)?.join(' ')
+    return masked.match(/.{1,4}/g)?.join(' ');
   };
 
   return (
     <div
+      role="region"
       aria-label="카드 등록 미리보기"
       className="relative mx-auto flex h-40 w-[280px] flex-col justify-between rounded-lg bg-[#333333] p-5"
     >
