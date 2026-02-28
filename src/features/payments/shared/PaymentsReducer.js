@@ -8,7 +8,7 @@ export const PAYMENTS_ACTIONS = {
   SELECT_CARD: 'SELECT_CARD',
 };
 
-export const paymentsReducer = (state, action) => {
+export const paymentsReducer = (state = initialState, action) => {
   switch (action.type) {
     case PAYMENTS_ACTIONS.ADD_CARD: {
       // { id, cardNumber, cardOwner, expiry, cvc, passwordPrefix }
