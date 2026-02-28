@@ -30,21 +30,23 @@ export const CvcInput = ({ value, onChange }) => {
           className="h-[55px] w-[110px] rounded-md bg-[#ECEBF1] px-4 py-2 text-xl transition outline-none focus:ring-1 focus:ring-gray-500"
         />
         {/* ? 버튼 */}
-        <button
-          type="button"
-          onClick={() => setShowTooltip((prev) => !prev)}
-          aria-label="CVC 안내 보기"
-          className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-500 text-sm font-semibold"
-        >
-          ?
-        </button>
+        <div className="relative">
+          <button
+            type="button"
+            onClick={() => setShowTooltip((prev) => !prev)}
+            aria-label="CVC 안내 보기"
+            className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-500 text-sm font-semibold"
+          >
+            ?
+          </button>
 
-        {/* Tooltip */}
-        {showTooltip && (
-          <div className="absolute top-1/2 left-full ml-3 w-56 -translate-y-1/2 rounded-md bg-black px-3 py-2 text-xs text-white shadow-lg">
-            카드 뒷면 서명란 옆 3자리 숫자입니다.
-          </div>
-        )}
+          {/* Tooltip */}
+          {showTooltip && (
+            <div className="absolute top-1/2 left-full ml-2 w-56 -translate-y-1/2 rounded-md bg-black px-3 py-2 text-xs text-white shadow-lg">
+              카드 뒷면 서명란 옆 3자리 숫자입니다.
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
