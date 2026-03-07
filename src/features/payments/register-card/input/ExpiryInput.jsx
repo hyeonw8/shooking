@@ -1,17 +1,6 @@
+import { formatExpiryInput } from '../../utils/cardFormat';
+
 export const ExpiryInput = ({ value, onChange }) => {
-  const getDisplayValue = (digits) => {
-    const onlyDigits = String(digits ?? '')
-      .replace(/\D/g, '')
-      .slice(0, 4);
-
-    const mm = onlyDigits.slice(0, 2);
-    const yy = onlyDigits.slice(2, 4);
-
-    // 0~2자리: 그대로, 3~4자리: "MM / YY"
-    if (onlyDigits.length <= 2) return mm;
-    return `${mm} / ${yy}`;
-  };
-
   const handleChange = (e) => {
     const raw = e.target.value;
 
@@ -20,7 +9,7 @@ export const ExpiryInput = ({ value, onChange }) => {
     onChange(digits);
   };
 
-  const displayValue = getDisplayValue(value);
+  const displayValue = formatExpiryInput(value);
 
   return (
     <div className="flex flex-col gap-2">
@@ -37,7 +26,7 @@ export const ExpiryInput = ({ value, onChange }) => {
         maxLength={7}
         value={displayValue}
         onChange={handleChange}
-        className="h-[55px] w-[150px] rounded-md bg-[#ECEBF1] px-4 py-2 text-xl text-center transition outline-none focus:ring-1 focus:ring-gray-500"
+        className="h-[55px] w-[150px] rounded-md bg-[#ECEBF1] px-4 py-2 text-center text-xl transition outline-none focus:ring-1 focus:ring-gray-500"
       />
     </div>
   );

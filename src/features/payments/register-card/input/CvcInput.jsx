@@ -33,8 +33,10 @@ export const CvcInput = ({ value, onChange }) => {
         <div className="relative">
           <button
             type="button"
+            aria-describedby={showTooltip ? 'cvc-tooltip' : undefined}
             onClick={() => setShowTooltip((prev) => !prev)}
             aria-label="CVC 안내 보기"
+            aria-expanded={showTooltip}
             className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-500 text-sm font-semibold"
           >
             ?
@@ -42,7 +44,10 @@ export const CvcInput = ({ value, onChange }) => {
 
           {/* Tooltip */}
           {showTooltip && (
-            <div className="absolute top-1/2 left-full ml-2 w-56 -translate-y-1/2 rounded-md bg-black px-3 py-2 text-xs text-white shadow-lg">
+            <div
+              id="cvc-tooltip"
+              className="absolute top-1/2 left-full ml-2 w-56 -translate-y-1/2 rounded-md bg-black px-3 py-2 text-xs text-white shadow-lg"
+            >
               카드 뒷면 서명란 옆 3자리 숫자입니다.
             </div>
           )}

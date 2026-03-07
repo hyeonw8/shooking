@@ -1,29 +1,9 @@
+import {
+  formatExpiryPreview,
+  formatMaskedCardNumber,
+} from '../utils/cardFormat';
+
 export const CardPreview = ({ cardNumber, cardOwner, expiry }) => {
-  const formatExpiry = (digits) => {
-    const raw = String(digits ?? '')
-      .replace(/\D/g, '')
-      .slice(0, 4);
-
-    const mm = raw.slice(0, 2) || 'MM';
-    const yy = raw.slice(2, 4) || 'YY';
-
-    return `${mm} / ${yy}`;
-  };
-
-  const maskCardNumberForPreview = (digits) => {
-    const raw = String(digits ?? '')
-      .replace(/\D/g, '')
-      .slice(0, 16);
-
-    if (!raw) return '';
-
-    const head = raw.slice(0, 8);
-    const tail = raw.slice(8);
-    const masked = head + '*'.repeat(tail.length);
-
-    return masked.match(/.{1,4}/g)?.join(' ');
-  };
-
   return (
     <div
       role="region"
@@ -34,7 +14,7 @@ export const CardPreview = ({ cardNumber, cardOwner, expiry }) => {
 
       <div className="mt-[70px]">
         <p className="text-md tracking-widest text-white">
-          {maskCardNumberForPreview(cardNumber)}
+          {formatMaskedCardNumber(cardNumber)}
         </p>
       </div>
 
@@ -42,7 +22,7 @@ export const CardPreview = ({ cardNumber, cardOwner, expiry }) => {
         <p className="min-w-0 flex-1 truncate">
           {cardOwner?.trim() ? cardOwner : 'NAME'}
         </p>
-        <p className="shrink-0">{formatExpiry(expiry)}</p>
+        <p className="shrink-0">{formatExpiryPreview(expiry)}</p>
       </div>
     </div>
   );

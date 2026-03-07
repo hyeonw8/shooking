@@ -1,10 +1,14 @@
 import { useRef } from 'react';
 
+const splitCardNumber = (digits = '') => [
+  digits.slice(0, 4),
+  digits.slice(4, 8),
+  digits.slice(8, 12),
+  digits.slice(12, 16),
+];
+
 export const CardNumberInput = ({ value, onChange }) => {
-  const num1 = value.slice(0, 4);
-  const num2 = value.slice(4, 8);
-  const num3 = value.slice(8, 12);
-  const num4 = value.slice(12, 16);
+  const [num1, num2, num3, num4] = splitCardNumber(value);
 
   const ref1 = useRef(null);
   const ref2 = useRef(null);
@@ -16,12 +20,7 @@ export const CardNumberInput = ({ value, onChange }) => {
   const handleChange = (index, e) => {
     const input = e.target.value.replace(/\D/g, '').slice(0, 4);
 
-    const next = [
-      value.slice(0, 4),
-      value.slice(4, 8),
-      value.slice(8, 12),
-      value.slice(12, 16),
-    ];
+    const next = splitCardNumber(value);
     next[index] = input;
     onChange(next.join(''));
 
@@ -33,13 +32,7 @@ export const CardNumberInput = ({ value, onChange }) => {
   const handleKeyDown = (index, e) => {
     if (e.key !== 'Backspace') return;
 
-    const parts = [
-      value.slice(0, 4),
-      value.slice(4, 8),
-      value.slice(8, 12),
-      value.slice(12, 16),
-    ];
-
+    const parts = splitCardNumber(value);
     const current = parts[index];
 
     if (index === 0) return;

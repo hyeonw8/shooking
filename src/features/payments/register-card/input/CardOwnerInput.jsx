@@ -2,8 +2,8 @@ export const CardOwnerInput = ({ value, onChange }) => {
   const handleChange = (e) => {
     const raw = e.target.value;
 
-    const lenthLimited = raw.slice(0, 30);
-    const upperCased = lenthLimited.toUpperCase();
+    const lengthLimited = raw.slice(0, 30);
+    const upperCased = lengthLimited.toUpperCase();
 
     const normalized = upperCased.trimStart().replace(/[^A-Z가-힣ㄱ-ㅎㅏ-ㅣ\s]/g, '');
 
@@ -14,7 +14,7 @@ export const CardOwnerInput = ({ value, onChange }) => {
     <div className="flex flex-col gap-2">
       <div className="flex justify-between text-sm font-medium text-gray-700">
         <label htmlFor="cardOwner">카드 소유자 이름</label>
-        <p>{`${value.length}/30`}</p>
+        <p>{`${value?.length ?? 0}/30`}</p>
       </div>
 
       <input
