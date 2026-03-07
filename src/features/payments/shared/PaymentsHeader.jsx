@@ -2,7 +2,7 @@ import { FiChevronLeft } from 'react-icons/fi';
 import { FiX } from 'react-icons/fi';
 
 export const PaymentsHeader = ({ title, variant, onBack, onClose }) => {
-  const showBack = variant === 'add';
+  const showBack = variant === 'add' && typeof onBack === 'function';
 
   return (
     <header className="sticky top-0 z-50 flex h-[60px] items-center justify-between bg-white px-6 py-10">

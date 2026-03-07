@@ -1,14 +1,10 @@
 import clsx from "clsx";
 
-export const PayWithThisCardButton = ({ disabled }) => {
-  const handleClick = () => {
-    alert('결제 요청 완료!');
-  };
-  
+export const PayWithThisCardButton = ({ disabled, onClick }) => {
   return (
     <button
       type="button"
-      onClick={handleClick}
+      onClick={onClick}
       disabled={disabled}
       className={clsx(
         'h-[40px] w-full rounded-full text-sm font-semibold transition',

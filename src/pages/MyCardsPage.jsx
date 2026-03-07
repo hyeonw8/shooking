@@ -9,7 +9,6 @@ function MyCardsPage() {
   const navigate = useNavigate();
 
   const { cards } = usePaymentsState();
-  const myCards = cards;
 
   const handleClose = () => {
     navigate('/');
@@ -24,7 +23,7 @@ function MyCardsPage() {
       <PaymentsHeader title="보유카드" variant="list" onClose={handleClose} />
 
       <main className="mx-auto w-full max-w-md px-4">
-        {myCards.length === 0 ? (
+        {cards.length === 0 ? (
           <section className="flex flex-col items-center pt-7">
             <p className="text-md mb-6 text-center font-medium text-gray-600">
               새로운 카드를 등록해주세요.
@@ -33,7 +32,7 @@ function MyCardsPage() {
           </section>
         ) : (
           <section className="pt-6">
-            <CardList cards={myCards} />
+            <CardList cards={cards} />
             <div className="mt-[47px] flex justify-center">
               <AddCardCTA onClick={handleGoAddCard} />
             </div>
