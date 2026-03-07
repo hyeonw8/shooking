@@ -7,7 +7,7 @@ import {
 
 export const usePaymentsState = () => {
   const context = useContext(PaymentsStateContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error('usePaymentsState must be used within PaymentsProvider');
   }
   return context;
@@ -15,7 +15,7 @@ export const usePaymentsState = () => {
 
 export const usePaymentsDispatch = () => {
   const context = useContext(PaymentsDispatchContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error('usePaymentsDispatch must be used within PaymentsProvider');
   }
   return context;

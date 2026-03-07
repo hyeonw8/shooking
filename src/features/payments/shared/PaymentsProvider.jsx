@@ -9,9 +9,9 @@ import { initialState, paymentsReducer } from './PaymentsReducer';
 export function PaymentsProvider({ children }) {
   const [state, dispatch] = useReducer(paymentsReducer, initialState);
 
-  const stateValue = useMemo(() => {
-    const { cards, selectedCardId } = state;
+  const { cards, selectedCardId } = state;
 
+  const stateValue = useMemo(() => {
     const selectedCard =
       cards.find((card) => card.id === selectedCardId) ?? null;
 
@@ -21,7 +21,7 @@ export function PaymentsProvider({ children }) {
       selectedCardId,
       selectedCard,
     };
-  }, [state]);
+  }, [cards, selectedCardId]);
 
   return (
     <PaymentsStateContext.Provider value={stateValue}>

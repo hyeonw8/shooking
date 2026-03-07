@@ -1,6 +1,6 @@
 export const initialState = {
-  cards: [],            // 카드 데이터 목록(객체 배열)
-  selectedCardId: null  // 결제에 사용할 카드 선택 상태
+  cards: [], // 카드 데이터 목록(객체 배열)
+  selectedCardId: null, // 결제에 사용할 카드 선택 상태
 };
 
 export const PAYMENTS_ACTIONS = {
@@ -11,8 +11,9 @@ export const PAYMENTS_ACTIONS = {
 export const paymentsReducer = (state = initialState, action) => {
   switch (action.type) {
     case PAYMENTS_ACTIONS.ADD_CARD: {
-      // { id, cardNumber, cardOwner, expiry, cvc, passwordPrefix }
-      const newCard = action.payload; 
+      const newCard = action.payload; // { id, cardNumber, cardOwner, expiry }
+      
+      if (!newCard?.id) return state;
 
       // exists 체크: 객체 배열이므로 some/find로 확인
       const exists = state.cards.some((card) => card.id === newCard.id);
@@ -29,10 +30,11 @@ export const paymentsReducer = (state = initialState, action) => {
     }
     case PAYMENTS_ACTIONS.SELECT_CARD: {
       const nextId = action.payload; // cardId
-      return {
-        ...state,
-        selectedCardId: nextId,
-      }
+      
+      const exists = state.cards.some((card) => card.id === nextId);
+      if (!exists) return state;
+
+      return { ...state, selectedCardId: nextId };
     }
 
     default:
