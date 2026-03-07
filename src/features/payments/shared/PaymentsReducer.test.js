@@ -51,6 +51,20 @@ describe('paymentsReducer', () => {
     expect(next).toBe(prev);
   });
 
+  it('ADD_CARD: id가 없으면 state를 그대로 반환한다', () => {
+    const prev = {
+      cards: [],
+      selectedCardId: null,
+    };
+
+    const next = paymentsReducer(prev, {
+      type: PAYMENTS_ACTIONS.ADD_CARD,
+      payload: { cardNumber: '1234', cardOwner: 'NAME', expiry: '1229' },
+    });
+
+    expect(next).toBe(prev);
+  });
+
   it('SELECT_CARD: selectedCardId를 변경한다', () => {
     const prev = {
       cards: [
@@ -68,6 +82,20 @@ describe('paymentsReducer', () => {
     expect(next.selectedCardId).toBe('2');
     expect(next.cards).toEqual(prev.cards); // cards는 그대로
     expect(next).not.toBe(prev); // state는 새 객체
+  });
+
+  it('SELECT_CARD: 존재하지 않는 id면 state를 그대로 반환한다', () => {
+    const prev = {
+      cards: [{ id: '1', cardNumber: '1111', cardOwner: 'A', expiry: '0129' }],
+      selectedCardId: '1',
+    };
+
+    const next = paymentsReducer(prev, {
+      type: PAYMENTS_ACTIONS.SELECT_CARD,
+      payload: '999',
+    });
+
+    expect(next).toBe(prev);
   });
 
   it('알 수 없는 action이면 state를 그대로 반환한다', () => {

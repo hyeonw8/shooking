@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { PAYMENTS_ACTIONS } from '../shared/PaymentsReducer';
 import { AddCardForm } from './AddCardForm';
 
-// 테스트마다 바꿔 끼울 mock 입력값들
+// 폼 유효성 통과용 mock 값
 const mockValues = {
   cardNumber: '1234567812345678',
   expiry: '1230',
@@ -80,7 +80,7 @@ vi.mock('./SubmitButton', () => ({
   ),
 }));
 
-const fillAllFieldsByClick = () => {
+const fillRequiredFields = () => {
   fireEvent.click(screen.getByRole('button', { name: 'mock-card-number' }));
   fireEvent.click(screen.getByRole('button', { name: 'mock-expiry' }));
   fireEvent.click(screen.getByRole('button', { name: 'mock-owner' }));
@@ -96,7 +96,7 @@ describe('AddCardForm', () => {
 
     mockDispatch.mockClear();
     mockNavigate.mockClear();
-    
+
     // 정상 케이스 기본값
     mockValues.cardNumber = '1234567812345678';
     mockValues.expiry = '1230'; // 2030-01 기준, 12/30은 유효
@@ -116,10 +116,10 @@ describe('AddCardForm', () => {
     expect(submit).toBeDisabled();
   });
 
-  it('유효성 충족 후 제출하면 카드 추가 dispatch 후 payments로 이동한다', () => {
+  it('유효성 충족 후 제출하면 카드 목록용 데이터만 dispatch하고 payments로 이동한다', () => {
     render(<AddCardForm />);
 
-    fillAllFieldsByClick();
+    fillRequiredFields();
 
     const submit = screen.getByRole('button', { name: '제출' });
     expect(submit).not.toBeDisabled();
@@ -135,11 +135,12 @@ describe('AddCardForm', () => {
         cardNumber: '1234567812345678',
         expiry: '1230',
         cardOwner: 'HONG GILDONG',
-        cvc: '123',
-        passwordPrefix: '12',
       })
     );
     expect(dispatched.payload.id).toBeDefined();
+    expect(dispatched.payload.cvc).toBeUndefined();
+    expect(dispatched.payload.passwordPrefix).toBeUndefined();
+
     expect(mockNavigate).toHaveBeenCalledWith('/payments');
   });
 
@@ -150,7 +151,7 @@ describe('AddCardForm', () => {
 
     render(<AddCardForm />);
 
-    fillAllFieldsByClick();
+    fillRequiredFields();
 
     const submit = screen.getByRole('button', { name: '제출' });
     expect(submit).toBeDisabled();
@@ -164,7 +165,7 @@ describe('AddCardForm', () => {
     mockValues.expiry = '0030'; // mm=0
     render(<AddCardForm />);
 
-    fillAllFieldsByClick();
+    fillRequiredFields();
 
     const submit = screen.getByRole('button', { name: '제출' });
     expect(submit).toBeDisabled();
@@ -175,7 +176,7 @@ describe('AddCardForm', () => {
     mockValues.cardOwner = '   '; // trim() 하면 빈 문자열
     render(<AddCardForm />);
 
-    fillAllFieldsByClick();
+    fillRequiredFields();
 
     const submit = screen.getByRole('button', { name: '제출' });
     expect(submit).toBeDisabled();
