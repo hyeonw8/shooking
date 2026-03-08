@@ -1,7 +1,7 @@
-import { useCart } from './useCart';
+import { useCartState } from './useCart';
 
 export const CartCountBadge = () => {
-  const { cartCount } = useCart();
+  const { cartCount } = useCartState();
 
   return (
     cartCount > 0 && (

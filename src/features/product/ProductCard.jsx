@@ -1,3 +1,4 @@
+import { CheckoutButton } from './CheckoutButton';
 import { ToggleToCartButton } from './ToggleToCartButton';
 
 export const ProductCard = ({ id, image, brand, description, price }) => {
@@ -14,7 +15,10 @@ export const ProductCard = ({ id, image, brand, description, price }) => {
         <h3 className="mt-2 font-semibold">{brand}</h3>
         <p className="text-sm text-gray-600">{description}</p>
         <p className="mt-1">{price.toLocaleString()}원</p>
-        <ToggleToCartButton id={id} />
+        <div className="flex gap-3">
+          <ToggleToCartButton id={id} />
+          <CheckoutButton />
+        </div>
       </div>
     </div>
   );
