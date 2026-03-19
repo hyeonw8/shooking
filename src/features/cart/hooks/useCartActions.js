@@ -1,4 +1,4 @@
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 
 import { cartItemsState } from '../state/cartState';
 import {
@@ -10,8 +10,7 @@ import {
 } from '../state/cartUtils';
 
 export const useCartActions = () => {
-  const [items, setItems] = useRecoilState(cartItemsState);
-  // const setItems = useSetRecoilState(cartItemsState);
+  const setItems = useSetRecoilState(cartItemsState);
 
   const handleAddItem = (item) => {
     setItems((prev) => addCartItem(prev, item));
