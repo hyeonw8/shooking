@@ -1,20 +1,21 @@
 import { Header } from '../components/Header';
+import { PageHeaderInfo } from '../components/PageHeaderInfo';
 import { ProductList } from '../features/product/ProductList';
-import { ProductListHeader } from '../features/product/ProductListHeader';
 import { mockProducts } from '../mocks/product';
 
-function Home() {
+export default function Home() {
   const totalCount = mockProducts.length;
 
   return (
     <>
-      <Header />
+      <Header variant="home" />
       <main className="mx-auto max-w-6xl px-4 pt-4 pb-8">
-        <ProductListHeader totalCount={totalCount} />
+        <PageHeaderInfo
+          title="신발 상품 목록"
+          description={`현재 ${totalCount}개의 상품이 있습니다.`}
+        />
         <ProductList />
       </main>
     </>
   );
 }
-
-export default Home;
