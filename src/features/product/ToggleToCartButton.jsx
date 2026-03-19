@@ -1,17 +1,22 @@
-import { useCartDispatch, useCartState } from '../cart/useCart';
+import { useRecoilValue } from 'recoil';
 
-export const ToggleToCartButton = ({ id }) => {
-  const dispatch = useCartDispatch();
-  const { cartSet } = useCartState();
-  const isInCart = cartSet.has(id);
+import { useCartActions } from '../cart/hooks/useCartActions';
+import { cartItemsState } from '../cart/state/cartState';
 
-  const handleToggleCart = () => {
-    dispatch({ type: 'toggle', payload: id });
+export const ToggleToCartButton = ({ product }) => {
+  const cartItems = useRecoilValue(cartItemsState);
+  const { handleToggleItem } = useCartActions();
+
+  const isInCart = cartItems.some((item) => item.id === product.id);
+
+  const handleClick = () => {
+    handleToggleItem(product);
   };
 
   return (
     <button
-      onClick={handleToggleCart}
+      type="button"
+      onClick={handleClick}
       className={`mt-3 inline-flex w-14 cursor-pointer items-center justify-center rounded-full py-1 text-sm font-semibold transition ${
         isInCart ? 'bg-gray-200 text-black' : 'bg-black text-white'
       }`}
