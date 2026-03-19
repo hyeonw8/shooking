@@ -1,7 +1,7 @@
 import { SubmitButton } from './SubmitButton';
 
 export default {
-  title: 'Payments/RegisterCard/SubmitButton',
+  title: 'payments/register-card/SubmitButton',
   component: SubmitButton,
 };
 

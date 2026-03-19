@@ -4,12 +4,14 @@ import { MemoryRouter } from 'react-router-dom';
 import { PaymentsHeader } from './PaymentsHeader';
 
 export default {
-  title: 'Payments/Shared/PaymentsHeader',
+  title: 'payments/shared/PaymentsHeader',
   component: PaymentsHeader,
   decorators: [
-    (story) => (
+    (Story) => (
       <MemoryRouter initialEntries={['/payments/add']}>
-        <div className="min-h-[120px] bg-white">{story()}</div>
+        <div className="min-h-[120px] bg-white">
+          <Story />
+        </div>
       </MemoryRouter>
     ),
   ],
@@ -21,7 +23,7 @@ export default {
   },
 };
 
-export const AddVariant = {};
+export const Add = {};
 
 export const List = {
   args: {
