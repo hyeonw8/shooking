@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 
 import { PaymentsProvider } from './features/payments/shared/PaymentsProvider';
 import AddCardPage from './pages/AddCardPage';
+import CartPage from './pages/CartPage';
 import Home from './pages/Home';
 import MyCardsPage from './pages/MyCardsPage';
-import { RecoilRoot } from 'recoil';
-import CartPage from './pages/CartPage';
 
 export default function App() {
   return (

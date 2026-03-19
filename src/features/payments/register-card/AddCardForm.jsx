@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { PAYMENTS_ACTIONS } from '../shared/PaymentsReducer';
 import { usePaymentsDispatch } from '../shared/usePayments';
 import { CardPreview } from './CardPreview';
+import { useAddCardForm } from './hooks/useAddCardForm';
 import { CardNumberInput } from './input/CardNumberInput';
 import { CardOwnerInput } from './input/CardOwnerInput';
 import { CardPasswordInput } from './input/CardPasswordInput';
 import { CvcInput } from './input/CvcInput';
 import { ExpiryInput } from './input/ExpiryInput';
 import { SubmitButton } from './SubmitButton';
-import { useAddCardForm } from './hooks/useAddCardForm';
 
 export const AddCardForm = () => {
   const dispatch = usePaymentsDispatch();
