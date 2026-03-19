@@ -1,4 +1,4 @@
-import { CartButton } from '../features/cart/components/CartButton';
+import { CartButton } from '../features/cart/components/shared/CartButton';
 import { BackButton } from './BackButton';
 
 export const Header = ({ variant = '', title }) => {
