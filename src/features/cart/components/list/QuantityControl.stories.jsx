@@ -22,3 +22,17 @@ export const HighQuantity = {
     quantity: 10,
   },
 };
+
+export const Minimum = {
+  args: {
+    quantity: 1,
+    disableDecrease: true,
+  },
+};
+
+export const Maximum = {
+  args: {
+    quantity: 99,
+    disableIncrease: true,
+  },
+};

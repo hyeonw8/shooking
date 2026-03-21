@@ -52,4 +52,30 @@ describe('QuantityControl', () => {
 
     expect(onDecrease).toHaveBeenCalledTimes(1);
   });
+
+  it('quantity가 1이면 감소 버튼이 비활성화된다', () => {
+    render(
+      <QuantityControl
+        quantity={1}
+        onIncrease={vi.fn()}
+        onDecrease={vi.fn()}
+        disableDecrease={true}
+      />
+    );
+
+    expect(screen.getByRole('button', { name: '수량 감소' })).toBeDisabled();
+  });
+
+  it('quantity가 99이면 증가 버튼이 비활성화된다', () => {
+    render(
+      <QuantityControl
+        quantity={99}
+        onIncrease={vi.fn()}
+        onDecrease={vi.fn()}
+        disableIncrease={true}
+      />
+    );
+
+    expect(screen.getByRole('button', { name: '수량 증가' })).toBeDisabled();
+  });
 });

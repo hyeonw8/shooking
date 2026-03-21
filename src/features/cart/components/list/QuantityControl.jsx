@@ -1,4 +1,10 @@
-export const QuantityControl = ({ quantity, onIncrease, onDecrease }) => {
+export const QuantityControl = ({
+  quantity,
+  onIncrease,
+  onDecrease,
+  disableIncrease = false,
+  disableDecrease = false,
+}) => {
   return (
     <div
       role="group"
@@ -9,7 +15,8 @@ export const QuantityControl = ({ quantity, onIncrease, onDecrease }) => {
         type="button"
         aria-label="수량 감소"
         onClick={onDecrease}
-        className="flex h-6 w-6 items-center justify-center rounded-[10px] bg-[#838383]/20 pb-0.5 leading-none text-[#363636]"
+        disabled={disableDecrease}
+        className="flex h-6 w-6 items-center justify-center rounded-[10px] bg-[#838383]/20 pb-0.5 leading-none text-[#363636] disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-400"
       >
         -
       </button>
@@ -18,7 +25,8 @@ export const QuantityControl = ({ quantity, onIncrease, onDecrease }) => {
         type="button"
         aria-label="수량 증가"
         onClick={onIncrease}
-        className="flex h-6 w-6 items-center justify-center rounded-[10px] bg-[#838383]/20 pb-0.5 leading-none text-[#363636]"
+        disabled={disableIncrease}
+        className="flex h-6 w-6 items-center justify-center rounded-[10px] bg-[#838383]/20 pb-0.5 leading-none text-[#363636] disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-400"
       >
         +
       </button>

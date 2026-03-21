@@ -46,6 +46,8 @@ export const CartItem = memo(({ id, image, brand, price, quantity }) => {
             quantity={quantity}
             onIncrease={handleIncreaseClick}
             onDecrease={handleDecreaseClick}
+            disableDecrease={quantity <= 1}
+            disableIncrease={quantity >= 99}
           />
         </div>
       </div>

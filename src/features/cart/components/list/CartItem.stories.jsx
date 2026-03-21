@@ -37,3 +37,17 @@ export const HighQuantity = {
     quantity: 9999,
   },
 };
+
+export const Minimum = {
+  args: {
+    ...baseItem,
+    quantity: 1,
+  },
+};
+
+export const Maximum = {
+  args: {
+    ...baseItem,
+    quantity: 99,
+  },
+};

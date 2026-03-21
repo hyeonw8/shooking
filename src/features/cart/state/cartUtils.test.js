@@ -140,6 +140,23 @@ describe('increaseQuantity', () => {
     expect(updatedItem.quantity).toBe(2);
   });
 
+  it('quantity가 99이면 더 이상 증가하지 않는다', () => {
+    const items = [
+      {
+        id: '1',
+        image: '/images/shoe-1.png',
+        brand: 'Nike',
+        price: 50000,
+        quantity: 99,
+      },
+    ];
+
+    const result = increaseQuantity(items, '1');
+    const updatedItem = result.find((item) => item.id === '1');
+
+    expect(updatedItem.quantity).toBe(99);
+  });
+
   it('원본 배열을 직접 변경하지 않는다', () => {
     const result = increaseQuantity(mockItems, '1');
     const originalItem = mockItems.find((item) => item.id === '1');
