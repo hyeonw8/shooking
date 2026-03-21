@@ -36,10 +36,4 @@ export default defineConfig([
     },
   },
   ...storybook.configs['flat/recommended'],
-  {
-    files: ['**/*.stories.{js,jsx}'],
-    rules: {
-      'no-unused-vars': 'off',
-    },
-  },
 ]);
