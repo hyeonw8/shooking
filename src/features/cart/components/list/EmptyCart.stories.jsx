@@ -6,11 +6,9 @@ export default {
   title: 'features/cart/components/list/EmptyCart',
   component: EmptyCart,
   decorators: [
-    (Story) => (
+    (storyFn) => (
       <MemoryRouter>
-        <div className="min-h-screen bg-white px-7 py-10">
-          <Story />
-        </div>
+        <div className="min-h-screen bg-white px-7 py-10">{storyFn()}</div>
       </MemoryRouter>
     ),
   ],

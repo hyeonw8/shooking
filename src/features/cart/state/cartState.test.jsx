@@ -102,7 +102,7 @@ describe('cartState', () => {
     expect(screen.getByText('empty:false')).toBeInTheDocument();
   });
 
-  it('상품 총 금액을 계산한다', () => {
+  it('상품 금액을 계산한다', () => {
     renderCartState(mockItems);
 
     expect(screen.getByText('subtotal:110000')).toBeInTheDocument();
@@ -122,7 +122,7 @@ describe('cartState', () => {
     expect(screen.getByText('total:83000')).toBeInTheDocument();
   });
 
-  it('최종 금액을 계산한다', () => {
+  it('총 금액을 계산한다', () => {
     renderCartState(mockItems);
 
     expect(screen.getByText('total:110000')).toBeInTheDocument();
