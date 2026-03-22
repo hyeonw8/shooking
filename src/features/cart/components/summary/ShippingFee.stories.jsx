@@ -8,15 +8,15 @@ export default {
 };
 
 export const Default = {
-  args: { fee: 3000 },
+  args: { fee: 3000, subtotal: 50000 },
 };
 
 export const Free = {
-  args: { fee: 0 },
+  args: { fee: 0, subtotal: 100000 },
 };
 
 export const TooltipOpen = {
-  args: { fee: 3000 },
+  args: { fee: 3000, subtotal: 50000 },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 

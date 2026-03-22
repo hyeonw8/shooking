@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const ShippingFee = ({ fee }) => {
+export const ShippingFee = ({ fee, subtotal }) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   return (
@@ -28,7 +28,9 @@ export const ShippingFee = ({ fee }) => {
           )}
         </div>
       </div>
-      <span className="text-2xl font-semibold">{fee.toLocaleString()}원</span>
+      <span className="text-2xl font-semibold">
+        {fee === 0 && subtotal > 0 ? '무료배송' : `${fee.toLocaleString()}원`}
+      </span>
     </div>
   );
 };

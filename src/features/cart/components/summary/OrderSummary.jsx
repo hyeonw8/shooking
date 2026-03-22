@@ -26,7 +26,7 @@ export const OrderSummary = () => {
   return (
     <section className="flex flex-col gap-2 p-[22px]">
       <AmountRow label="상품 금액" value={subtotal} />
-      <ShippingFee fee={shipping} />
+      <ShippingFee fee={shipping} subtotal={subtotal} />
       <hr className="border-gray-300" />
       <AmountRow label="총 금액" value={total} />
       <div className="mt-6">
