@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { IoClose } from 'react-icons/io5';
 
 import { useCartActions } from '../../hooks/useCartActions';
 import { QuantityControl } from './QuantityControl';
@@ -20,16 +21,14 @@ export const CartItem = memo(({ id, image, brand, price, quantity }) => {
 
   return (
     <article className="relative flex h-[185px] w-full max-w-[430px] border-b border-gray-200 px-[20px] py-[22px]">
-      <div className="absolute top-0 right-3">
-        <button
-          type="button"
-          onClick={handleRemoveClick}
-          aria-label="상품 삭제"
-          className="text-xl text-gray-600"
-        >
-          x
-        </button>
-      </div>
+      <button
+        type="button"
+        onClick={handleRemoveClick}
+        aria-label="상품 삭제"
+        className="absolute top-3 right-3 text-gray-400 transition-colors hover:text-gray-700"
+      >
+        <IoClose size={22} />
+      </button>
       <div className="flex flex-1 items-end gap-[54px]">
         <img
           src={image}
