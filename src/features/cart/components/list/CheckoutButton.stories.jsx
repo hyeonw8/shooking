@@ -1,17 +1,13 @@
-import { MemoryRouter } from 'react-router-dom';
+import { fn } from '@storybook/test';
 
 import { CheckoutButton } from './CheckoutButton';
 
 export default {
   title: 'features/cart/components/list/CheckoutButton',
   component: CheckoutButton,
-  decorators: [
-    (Story) => (
-      <MemoryRouter>
-        <Story />
-      </MemoryRouter>
-    ),
-  ],
+  args: {
+    onClick: fn(),
+  },
 };
 
 export const Enabled = {
