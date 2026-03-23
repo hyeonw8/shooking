@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { RecoilRoot } from 'recoil';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { CartItem } from './CartItem';
+import * as cartActionsModule from '../../hooks/useCartActions';
 
 const mockItem = {
   id: '1',
@@ -37,5 +38,22 @@ describe('CartItem', () => {
     expect(
       screen.getByRole('group', { name: '수량 조절' })
     ).toBeInTheDocument();
+  });
+
+  it('삭제 버튼 클릭 시 remove 액션이 호출된다', () => {
+    const handleRemoveItem = vi.fn();
+
+    vi.spyOn(cartActionsModule, 'useCartActions').mockReturnValue({
+      handleIncrease: vi.fn(),
+      handleDecrease: vi.fn(),
+      handleRemoveItem,
+    });
+
+    renderCartItem();
+
+    const deleteButton = screen.getByRole('button', { name: '상품 삭제' });
+    fireEvent.click(deleteButton);
+
+    expect(handleRemoveItem).toHaveBeenCalledWith('1');
   });
 });
