@@ -16,7 +16,15 @@ export const ProductCard = ({ id, image, brand, description, price }) => {
         <p className="text-sm text-gray-600">{description}</p>
         <p className="mt-1">{price.toLocaleString()}원</p>
         <div className="flex gap-3">
-          <ToggleToCartButton id={id} />
+          <ToggleToCartButton
+            product={{
+              id,
+              image,
+              brand,
+              price,
+              quantity: 1,
+            }}
+          />
           <CheckoutButton />
         </div>
       </div>

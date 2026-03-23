@@ -1,7 +1,9 @@
-import { useCartState } from './useCart';
+import { useRecoilValue } from 'recoil';
+
+import { cartCountState } from '../../state/cartState';
 
 export const CartCountBadge = () => {
-  const { cartCount } = useCartState();
+  const cartCount = useRecoilValue(cartCountState);
 
   return (
     cartCount > 0 && (

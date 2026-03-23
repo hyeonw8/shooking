@@ -1,19 +1,25 @@
-import { expect, userEvent, within } from '@storybook/test';
+import { expect, fn, userEvent, within } from '@storybook/test';
 import { useState } from 'react';
 
 import { CvcInput } from './CvcInput';
 
-function ControlledCvc() {
-  const [value, setValue] = useState('');
-  return <CvcInput value={value} onChange={setValue} />;
-}
+const ControlledRender = (args) => {
+  const [value, setValue] = useState(args.value ?? '');
+
+  return <CvcInput {...args} value={value} onChange={setValue} />;
+};
 
 export default {
-  title: 'Payments/RegisterCard/Input/CvcInput',
-  component: ControlledCvc,
+  title: 'payments/register-card/input/CvcInput',
+  component: CvcInput,
   parameters: {
     layout: 'centered',
   },
+  args: {
+    value: '',
+    onChange: fn(),
+  },
+  render: (args) => <ControlledRender {...args} />,
 };
 
 export const Default = {};

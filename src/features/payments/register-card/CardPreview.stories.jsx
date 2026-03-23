@@ -1,7 +1,7 @@
 import { CardPreview } from './CardPreview';
 
 export default {
-  title: 'Payments/RegisterCard/CardPreview',
+  title: 'payments/register-card/CardPreview',
   component: CardPreview,
 };
 

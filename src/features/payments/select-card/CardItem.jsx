@@ -1,4 +1,7 @@
-import { formatExpiryPreview, formatMaskedCardNumber } from '../utils/cardFormat';
+import {
+  formatExpiryPreview,
+  formatMaskedCardNumber,
+} from '../utils/cardFormat';
 
 export const CardItem = ({ id, cardNumber, cardOwner, expiry }) => {
   return (
