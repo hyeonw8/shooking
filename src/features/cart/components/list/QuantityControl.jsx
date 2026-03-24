@@ -16,7 +16,7 @@ export const QuantityControl = ({
         aria-label="수량 감소"
         onClick={onDecrease}
         disabled={disableDecrease}
-        className="flex h-6 w-6 items-center justify-center rounded-[10px] bg-[#838383]/20 pb-0.5 leading-none text-[#363636] disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400"
+        className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-[10px] bg-[#838383]/20 pb-0.5 leading-none text-[#363636] disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400"
       >
         -
       </button>
@@ -26,7 +26,7 @@ export const QuantityControl = ({
         aria-label="수량 증가"
         onClick={onIncrease}
         disabled={disableIncrease}
-        className="flex h-6 w-6 items-center justify-center rounded-[10px] bg-[#838383]/20 pb-0.5 leading-none text-[#363636] disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400"
+        className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-[10px] bg-[#838383]/20 pb-0.5 leading-none text-[#363636] disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400"
       >
         +
       </button>

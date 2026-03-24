@@ -25,7 +25,7 @@ export const CartItem = memo(({ id, image, brand, price, quantity }) => {
         type="button"
         onClick={handleRemoveClick}
         aria-label="상품 삭제"
-        className="absolute top-3 right-3 text-gray-400 transition-colors hover:text-gray-700"
+        className="absolute top-3 right-3 cursor-pointer text-gray-400 transition-colors hover:text-gray-700"
       >
         <IoClose size={22} />
       </button>

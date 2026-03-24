@@ -12,7 +12,7 @@ export const PaymentsHeader = ({ title, variant, onBack, onClose }) => {
           <button
             type="button"
             onClick={onBack}
-            className="flex h-10 w-10 items-center justify-center rounded-full transition hover:bg-gray-100"
+            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full transition hover:bg-gray-100"
             aria-label="뒤로가기"
           >
             <FiChevronLeft size={22} />
@@ -24,7 +24,7 @@ export const PaymentsHeader = ({ title, variant, onBack, onClose }) => {
       <button
         type="button"
         onClick={onClose}
-        className="flex h-10 w-10 items-center justify-center rounded-full transition hover:bg-gray-100"
+        className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full transition hover:bg-gray-100"
         aria-label="닫기"
       >
         <FiX size={22} />
