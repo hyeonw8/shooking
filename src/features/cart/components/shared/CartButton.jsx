@@ -13,7 +13,7 @@ export const CartButton = () => {
   return (
     <button
       type="button"
-      className="relative cursor-pointer"
+      className="relative flex h-10 w-10 cursor-pointer items-center justify-end"
       aria-label="장바구니"
       onClick={handleMoveCart}
     >
