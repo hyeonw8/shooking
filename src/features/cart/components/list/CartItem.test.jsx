@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -15,9 +16,11 @@ const mockItem = {
 
 const renderCartItem = () => {
   return render(
-    <RecoilRoot>
-      <CartItem {...mockItem} />
-    </RecoilRoot>
+    <MemoryRouter>
+      <RecoilRoot>
+        <CartItem {...mockItem} />
+      </RecoilRoot>
+    </MemoryRouter>
   );
 };
 
