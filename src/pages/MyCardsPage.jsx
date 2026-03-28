@@ -22,9 +22,9 @@ function MyCardsPage() {
     <div className="min-h-screen">
       <PaymentsHeader title="보유카드" variant="list" onClose={handleClose} />
 
-      <main className="mx-auto w-full max-w-md px-4">
+      <main className="mx-auto w-full max-w-md px-5">
         {cards.length === 0 ? (
-          <section className="flex flex-col items-center pt-7">
+          <section className="flex flex-col items-center pt-6">
             <p className="text-md mb-6 text-center font-medium text-gray-600">
               새로운 카드를 등록해주세요.
             </p>

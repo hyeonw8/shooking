@@ -15,15 +15,17 @@ function AddCardPage() {
   };
 
   return (
-    <main className="min-h-screen pb-6">
+    <div className="min-h-screen">
       <PaymentsHeader
-        title="카드추가"
+        title="카드 추가"
         variant="add"
         onClose={handleClose}
         onBack={handleBack}
       />
-      <AddCardForm />
-    </main>
+      <main className="mx-auto w-full max-w-md px-6 pb-6">
+        <AddCardForm />
+      </main>
+    </div>
   );
 }
 

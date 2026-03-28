@@ -48,7 +48,7 @@ export const AddCardForm = () => {
         cardOwner={form.cardOwner}
         expiry={form.expiry}
       />
-      <form onSubmit={handleSubmitForm} className="flex flex-col gap-6 px-7">
+      <form onSubmit={handleSubmitForm} className="flex flex-col gap-6 px-2">
         <div className="flex flex-col gap-5">
           <CardNumberInput
             value={form.cardNumber}

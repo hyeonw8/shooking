@@ -29,7 +29,7 @@ export const OrderSummary = () => {
       <ShippingFee fee={shipping} subtotal={subtotal} />
       <hr className="border-gray-300" />
       <AmountRow label="총 금액" value={total} />
-      <div className="mt-6">
+      <div className="mt-6 flex justify-center">
         <CheckoutButton
           disabled={subtotal === 0}
           onClick={handleProceedToPayment}
