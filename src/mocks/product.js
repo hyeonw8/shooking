@@ -1,9 +1,15 @@
 import shoesA1 from '/assets/images/products/shoes-a-1.jpg';
 import shoesA2 from '/assets/images/products/shoes-a-2.jpg';
+import shoesA3 from '/assets/images/products/shoes-a-3.jpg';
+import shoesA4 from '/assets/images/products/shoes-a-4.jpg';
 import shoesB1 from '/assets/images/products/shoes-b-1.jpg';
 import shoesB2 from '/assets/images/products/shoes-b-2.jpg';
+import shoesB3 from '/assets/images/products/shoes-b-3.jpg';
+import shoesB4 from '/assets/images/products/shoes-b-4.jpg';
 import shoesC1 from '/assets/images/products/shoes-c-1.jpg';
 import shoesC2 from '/assets/images/products/shoes-c-2.jpg';
+import shoesC3 from '/assets/images/products/shoes-c-3.jpg';
+import shoesC4 from '/assets/images/products/shoes-c-4.jpg';
 
 export const mockProducts = [
   {
@@ -44,6 +50,48 @@ export const mockProducts = [
   {
     id: 6,
     image: shoesC2,
+    brand: '브랜드 C',
+    description: '힙한 컬러가 매력적인 신발',
+    price: 35000,
+  },
+  {
+    id: 7,
+    image: shoesA3,
+    brand: '브랜드 A',
+    description: '편안하고 착용감이 좋은 신발',
+    price: 35000,
+  },
+  {
+    id: 8,
+    image: shoesA4,
+    brand: '브랜드 A',
+    description: '힙한 컬러가 매력적인 신발',
+    price: 25000,
+  },
+  {
+    id: 9,
+    image: shoesB3,
+    brand: '브랜드 B',
+    description: '편안하고 착용감이 좋은 신발',
+    price: 35000,
+  },
+  {
+    id: 10,
+    image: shoesB4,
+    brand: '브랜드 B',
+    description: '힙한 컬러가 매력적인 신발',
+    price: 35000,
+  },
+  {
+    id: 11,
+    image: shoesC3,
+    brand: '브랜드 C',
+    description: '편안하고 착용감이 좋은 신발',
+    price: 42000,
+  },
+  {
+    id: 12,
+    image: shoesC4,
     brand: '브랜드 C',
     description: '힙한 컬러가 매력적인 신발',
     price: 35000,
