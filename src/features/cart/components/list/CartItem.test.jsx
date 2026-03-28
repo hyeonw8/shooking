@@ -2,8 +2,8 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { RecoilRoot } from 'recoil';
 import { describe, expect, it, vi } from 'vitest';
 
-import { CartItem } from './CartItem';
 import * as cartActionsModule from '../../hooks/useCartActions';
+import { CartItem } from './CartItem';
 
 const mockItem = {
   id: '1',

@@ -3,7 +3,7 @@ import {
   formatMaskedCardNumber,
 } from '../utils/cardFormat';
 
-export const CardItem = ({ id, cardNumber, cardOwner, expiry }) => {
+export const CardItem = ({ cardNumber, cardOwner, expiry }) => {
   return (
     <div
       aria-label={`${cardOwner ?? '등록된'} 카드`}
