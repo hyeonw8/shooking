@@ -1,7 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
+import { usePaymentActions } from '../../../payments/hooks/usePaymentActions';
+import { createCartPaymentOrder } from '../../../payments/utils/paymentUtils';
 import {
+  cartItemsState,
   cartShippingFeeState,
   cartSubtotalState,
   cartTotalState,
@@ -17,9 +20,21 @@ export const OrderSummary = () => {
   const shipping = useRecoilValue(cartShippingFeeState);
   const total = useRecoilValue(cartTotalState);
 
+  const cartItems = useRecoilValue(cartItemsState);
+
+  const { handleSetPaymentOrder } = usePaymentActions();
+
   const handleProceedToPayment = () => {
     if (subtotal === 0) return;
 
+    const newPaymentOrder = createCartPaymentOrder({
+      items: cartItems,
+      subtotal,
+      shippingFee: shipping,
+      total,
+    });
+
+    handleSetPaymentOrder(newPaymentOrder);
     navigate('/payments');
   };
 
