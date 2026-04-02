@@ -1,12 +1,27 @@
 import { Link, useNavigate } from 'react-router-dom';
 
+import { usePaymentActions } from '../payments/hooks/usePaymentActions';
+import { createSingleProductPaymentOrder } from '../payments/utils/paymentUtils';
 import { BuyNowButton } from './BuyNowButton';
 import { ToggleToCartButton } from './ToggleToCartButton';
 
 export const ProductCard = ({ id, image, brand, description, price }) => {
   const navigate = useNavigate();
+  const { handleSetPaymentOrder } = usePaymentActions();
 
   const handleProceedToPayment = () => {
+    const newPaymentOrder = createSingleProductPaymentOrder({
+      product: {
+        id,
+        image,
+        brand,
+        price,
+      },
+      quantity: 1,
+    });
+
+    handleSetPaymentOrder(newPaymentOrder);
+
     navigate('/payments');
   };
 
