@@ -32,11 +32,16 @@ export const useCartActions = () => {
     setItems((prev) => decreaseQuantity(prev, id));
   };
 
+  const handleResetCart = () => {
+    setItems([]);
+  };
+
   return {
     handleAddItem,
     handleRemoveItem,
     handleToggleItem,
     handleIncrease,
     handleDecrease,
+    handleResetCart,
   };
 };
