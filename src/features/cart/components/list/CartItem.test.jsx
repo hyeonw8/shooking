@@ -35,6 +35,15 @@ describe('CartItem', () => {
     expect(screen.getByText('129,000원')).toBeInTheDocument();
   });
 
+  it('상품 이미지가 해당 상품 상세 페이지로 연결된다', () => {
+    renderCartItem();
+
+    const image = screen.getByRole('img', { name: 'Nike 상품 이미지' });
+    const link = image.closest('a');
+
+    expect(link).toHaveAttribute('href', '/products/1');
+  });
+
   it('QuantityControl을 렌더링한다', () => {
     renderCartItem();
 
