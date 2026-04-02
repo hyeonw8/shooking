@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { PAYMENTS_ACTIONS } from '../shared/PaymentsReducer';
-import { usePaymentsDispatch } from '../shared/usePayments';
+import { usePaymentActions } from '../hooks/usePaymentActions';
 import { CardPreview } from './CardPreview';
 import { useAddCardForm } from './hooks/useAddCardForm';
 import { CardNumberInput } from './input/CardNumberInput';
@@ -12,17 +11,16 @@ import { ExpiryInput } from './input/ExpiryInput';
 import { SubmitButton } from './SubmitButton';
 
 export const AddCardForm = () => {
-  const dispatch = usePaymentsDispatch();
   const navigate = useNavigate();
 
   const { form, isSubmitting, isValid, handleChange, setIsSubmitting } =
     useAddCardForm();
+  const { handleAddCard } = usePaymentActions();
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
 
-    if (isSubmitting) return;
-    if (!isValid) return;
+    if (isSubmitting || !isValid) return;
 
     setIsSubmitting(true);
 
@@ -34,7 +32,13 @@ export const AddCardForm = () => {
         expiry: form.expiry,
       };
 
-      dispatch({ type: PAYMENTS_ACTIONS.ADD_CARD, payload: newCard });
+      const isAdded = handleAddCard(newCard);
+
+      if (!isAdded) {
+        alert('이미 등록된 카드입니다.');
+        return;
+      }
+
       navigate('/payments');
     } finally {
       setIsSubmitting(false);
