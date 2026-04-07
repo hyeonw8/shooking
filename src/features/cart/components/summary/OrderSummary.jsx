@@ -1,7 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
+import { usePaymentActions } from '../../../payments/hooks/usePaymentActions';
+import { createCartPaymentOrder } from '../../../payments/utils/paymentUtils';
 import {
+  cartItemsState,
   cartShippingFeeState,
   cartSubtotalState,
   cartTotalState,
@@ -17,9 +20,21 @@ export const OrderSummary = () => {
   const shipping = useRecoilValue(cartShippingFeeState);
   const total = useRecoilValue(cartTotalState);
 
+  const cartItems = useRecoilValue(cartItemsState);
+
+  const { handleSetPaymentOrder } = usePaymentActions();
+
   const handleProceedToPayment = () => {
     if (subtotal === 0) return;
 
+    const newPaymentOrder = createCartPaymentOrder({
+      items: cartItems,
+      subtotal,
+      shippingFee: shipping,
+      total,
+    });
+
+    handleSetPaymentOrder(newPaymentOrder);
     navigate('/payments');
   };
 
@@ -29,7 +44,7 @@ export const OrderSummary = () => {
       <ShippingFee fee={shipping} subtotal={subtotal} />
       <hr className="border-gray-300" />
       <AmountRow label="총 금액" value={total} />
-      <div className="mt-6">
+      <div className="mt-6 flex justify-center">
         <CheckoutButton
           disabled={subtotal === 0}
           onClick={handleProceedToPayment}

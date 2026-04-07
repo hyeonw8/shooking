@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <Header variant="home" />
-      <main className="mx-auto max-w-6xl px-4 pt-4 pb-8">
+      <main className="mx-auto max-w-6xl px-5 pt-4 pb-8">
         <PageHeaderInfo
           title="신발 상품 목록"
           description={`현재 ${totalCount}개의 상품이 있습니다.`}

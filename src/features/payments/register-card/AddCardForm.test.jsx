@@ -1,7 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { PAYMENTS_ACTIONS } from '../shared/PaymentsReducer';
 import { AddCardForm } from './AddCardForm';
 
 // 폼 유효성 통과용 mock 값
@@ -13,11 +12,13 @@ const mockValues = {
   passwordPrefix: '12',
 };
 
-// usePaymentsDispatch mock
-const mockDispatch = vi.fn();
+// usePaymentActions mock
+const mockHandleAddCard = vi.fn();
 
-vi.mock('../shared/usePayments', () => ({
-  usePaymentsDispatch: () => mockDispatch,
+vi.mock('../hooks/usePaymentActions', () => ({
+  usePaymentActions: () => ({
+    handleAddCard: mockHandleAddCard,
+  }),
 }));
 
 // useNavigate mock
@@ -30,6 +31,9 @@ vi.mock('react-router-dom', async () => {
     useNavigate: () => mockNavigate,
   };
 });
+
+// alert mock
+const mockAlert = vi.fn();
 
 // 입력 컴포넌트들 mock
 vi.mock('./input/CardNumberInput', () => ({
@@ -94,8 +98,11 @@ describe('AddCardForm', () => {
     // 만료일 검증이 Date에 의존하므로 시간 고정
     vi.setSystemTime(new Date('2030-01-01T00:00:00.000Z'));
 
-    mockDispatch.mockClear();
+    mockHandleAddCard.mockClear();
     mockNavigate.mockClear();
+    mockAlert.mockClear();
+
+    vi.stubGlobal('alert', mockAlert);
 
     // 정상 케이스 기본값
     mockValues.cardNumber = '1234567812345678';
@@ -103,10 +110,13 @@ describe('AddCardForm', () => {
     mockValues.cardOwner = 'HONG GILDONG';
     mockValues.cvc = '123';
     mockValues.passwordPrefix = '12';
+
+    mockHandleAddCard.mockReturnValue(true);
   });
 
   afterEach(() => {
     vi.useRealTimers();
+    vi.unstubAllGlobals();
   });
 
   it('초기에는 제출 버튼이 비활성화된다', () => {
@@ -116,7 +126,7 @@ describe('AddCardForm', () => {
     expect(submit).toBeDisabled();
   });
 
-  it('유효성 충족 후 제출하면 카드 목록용 데이터만 dispatch하고 payments로 이동한다', () => {
+  it('유효성 충족 후 제출하면 handleAddCard를 호출하고 payments로 이동한다', () => {
     render(<AddCardForm />);
 
     fillRequiredFields();
@@ -126,22 +136,37 @@ describe('AddCardForm', () => {
 
     fireEvent.click(submit);
 
-    expect(mockDispatch).toHaveBeenCalledTimes(1);
+    expect(mockHandleAddCard).toHaveBeenCalledTimes(1);
 
-    const dispatched = mockDispatch.mock.calls[0][0];
-    expect(dispatched.type).toBe(PAYMENTS_ACTIONS.ADD_CARD);
-    expect(dispatched.payload).toEqual(
+    const submittedCard = mockHandleAddCard.mock.calls[0][0];
+
+    expect(submittedCard).toEqual(
       expect.objectContaining({
         cardNumber: '1234567812345678',
         expiry: '1230',
         cardOwner: 'HONG GILDONG',
       })
     );
-    expect(dispatched.payload.id).toBeDefined();
-    expect(dispatched.payload.cvc).toBeUndefined();
-    expect(dispatched.payload.passwordPrefix).toBeUndefined();
+    expect(submittedCard.id).toBeDefined();
+    expect(submittedCard.cvc).toBeUndefined();
+    expect(submittedCard.passwordPrefix).toBeUndefined();
 
     expect(mockNavigate).toHaveBeenCalledWith('/payments');
+  });
+
+  it('중복 카드면 alert를 띄우고 payments로 이동하지 않는다', () => {
+    mockHandleAddCard.mockReturnValue(false);
+
+    render(<AddCardForm />);
+
+    fillRequiredFields();
+
+    const submit = screen.getByRole('button', { name: '제출' });
+    fireEvent.click(submit);
+
+    expect(mockHandleAddCard).toHaveBeenCalledTimes(1);
+    expect(mockAlert).toHaveBeenCalledWith('이미 등록된 카드입니다.');
+    expect(mockNavigate).not.toHaveBeenCalled();
   });
 
   it('만료일이 과거면 제출 버튼이 비활성화되고 submit해도 dispatch되지 않는다', () => {
@@ -157,7 +182,7 @@ describe('AddCardForm', () => {
     expect(submit).toBeDisabled();
 
     fireEvent.click(submit);
-    expect(mockDispatch).not.toHaveBeenCalled();
+    expect(mockHandleAddCard).not.toHaveBeenCalled();
     expect(mockNavigate).not.toHaveBeenCalled();
   });
 
@@ -169,7 +194,7 @@ describe('AddCardForm', () => {
 
     const submit = screen.getByRole('button', { name: '제출' });
     expect(submit).toBeDisabled();
-    expect(mockDispatch).not.toHaveBeenCalled();
+    expect(mockHandleAddCard).not.toHaveBeenCalled();
   });
 
   it('카드 소유자명이 공백뿐이면 제출 버튼이 비활성화된다', () => {
@@ -180,6 +205,6 @@ describe('AddCardForm', () => {
 
     const submit = screen.getByRole('button', { name: '제출' });
     expect(submit).toBeDisabled();
-    expect(mockDispatch).not.toHaveBeenCalled();
+    expect(mockHandleAddCard).not.toHaveBeenCalled();
   });
 });

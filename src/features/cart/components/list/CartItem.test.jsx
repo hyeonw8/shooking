@@ -1,9 +1,10 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { describe, expect, it, vi } from 'vitest';
 
-import { CartItem } from './CartItem';
 import * as cartActionsModule from '../../hooks/useCartActions';
+import { CartItem } from './CartItem';
 
 const mockItem = {
   id: '1',
@@ -15,9 +16,11 @@ const mockItem = {
 
 const renderCartItem = () => {
   return render(
-    <RecoilRoot>
-      <CartItem {...mockItem} />
-    </RecoilRoot>
+    <MemoryRouter>
+      <RecoilRoot>
+        <CartItem {...mockItem} />
+      </RecoilRoot>
+    </MemoryRouter>
   );
 };
 
@@ -30,6 +33,15 @@ describe('CartItem', () => {
     ).toBeInTheDocument();
     expect(screen.getByText('Nike')).toBeInTheDocument();
     expect(screen.getByText('129,000원')).toBeInTheDocument();
+  });
+
+  it('상품 이미지가 해당 상품 상세 페이지로 연결된다', () => {
+    renderCartItem();
+
+    const image = screen.getByRole('img', { name: 'Nike 상품 이미지' });
+    const link = image.closest('a');
+
+    expect(link).toHaveAttribute('href', '/products/1');
   });
 
   it('QuantityControl을 렌더링한다', () => {

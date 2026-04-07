@@ -7,11 +7,9 @@ export default {
   title: 'payments/shared/PaymentsHeader',
   component: PaymentsHeader,
   decorators: [
-    (Story) => (
+    (storyFn) => (
       <MemoryRouter initialEntries={['/payments/add']}>
-        <div className="min-h-[120px] bg-white">
-          <Story />
-        </div>
+        <div className="min-h-[120px] bg-white">{storyFn()}</div>
       </MemoryRouter>
     ),
   ],

@@ -3,7 +3,7 @@ export const SubmitButton = ({ disabled = false }) => {
     <button
       type="submit"
       disabled={disabled}
-      className="w-full rounded-full bg-black py-2 text-lg text-white transition hover:bg-gray-800 disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500"
+      className="w-full cursor-pointer rounded-full bg-black py-2 text-lg text-white transition hover:bg-gray-800 disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500"
     >
       작성 완료
     </button>

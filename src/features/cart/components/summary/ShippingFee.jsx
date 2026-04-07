@@ -6,8 +6,10 @@ export const ShippingFee = ({ fee, subtotal }) => {
 
   return (
     <div className="flex justify-between">
-      <div className="flex items-center gap-2">
-        <span className="text-lg font-semibold">배송비</span>
+      <div className="flex shrink-0 items-center gap-x-2">
+        <span className="text-lg font-semibold whitespace-nowrap lg:text-xl">
+          배송비
+        </span>
         <div className="relative flex items-center">
           <button
             type="button"
@@ -29,7 +31,7 @@ export const ShippingFee = ({ fee, subtotal }) => {
           )}
         </div>
       </div>
-      <span className="text-2xl font-semibold">
+      <span className="text-2xl font-semibold whitespace-nowrap lg:text-[26px]">
         {fee === 0 && subtotal > 0 ? '무료배송' : `${fee.toLocaleString()}원`}
       </span>
     </div>

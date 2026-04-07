@@ -9,7 +9,7 @@ export const BackButton = () => {
       type="button"
       onClick={() => navigate(-1)}
       aria-label="뒤로가기"
-      className="flex items-center justify-center text-white"
+      className="flex h-10 w-10 cursor-pointer items-center justify-start text-white"
     >
       <IoArrowBack size={28} />
     </button>
